@@ -1,0 +1,97 @@
+/**
+ * OGÓLNIE
+ *
+ * Ten plik obsługuje layout strony. Zamiast konfigurować layouty
+ * komponentów jeden po drugim, tworzymy osobny system, którego
+ * celem jest tylko jedno – mówienie każdemu elementowi, jaki
+ * powinien mieć rozmiar i gdzie powinien się pojawić.
+ *
+ * Zadeklarowanie tutaj klasy można wywołać na każdym containerze, aby
+ * nadać im właściwy rozmiar i sprawić, by zachowywały się w konkretny sposób.
+ */
+
+
+/**
+ * SPIS TREŚCI
+ *
+ * LAYOUT
+ * Elementy.................Reguły wielkości containerów.
+ * Modifiery..............Reguły modyfikujące layout, np. float.
+ *
+ * GUTTERSY
+ * Guttersy poziome....Reguły whitespace w poziomie między containerami.
+ *
+ * HELPERSY
+ * Clearfix...............Klasa, którą można wywołać na containerach float.
+ */
+
+
+
+
+
+/*------------------------------------*\
+  #LAYOUT
+\*------------------------------------*/
+
+/**
+ * 1. Tych klas używamy do ustawienia pionowego guttera między
+ * dwoma containerami. Skalują się automatycznie, więc pomijają połowę
+ * whitespace między elementami. Kiedy dwa elementy umieszczone są obok 
+ * siebie, odpowiednio przycięty gutter automatycznie pojawi się między nimi.
+ * Dla dopełnienia efektu, za pomocą odpowiednich klas, musimy użyć
+ * float do przesunięcia jednego elementu w lewo, a drugiego w prawo.
+ *
+ * 2. Jeśli potrzebujesz wyśrodkować poziomo element, użyj tej klasy.
+ *
+ * 3. Jeśli chcesz użyć float na elemencie, te klasy Ci w tym pomogą.
+ * Nie zapomnij o wywołaniu klasy .clearfix
+ * z sekcji HELPERSY na containerze.
+ */
+.layout__item--full-width           	{ width: 100%; }
+
+.layout__item--70-percent           	{ width: 70%; }
+
+.layout__item--66-percent-w-gutter  	{ width: calc(66.6% - 1.071rem); } /* [1] */
+
+.layout__item--50-percent-w-gutter  	{ width: calc(50%   - 1.071rem); } /* [1] */
+
+.layout__item--33-percent-w-gutter  	{ width: calc(33.3% - 1.071rem); } /* [1] */
+
+
+.layout__item--content-w-sticked-footer { min-height: calc(100vh - 80px); }
+
+
+ .layout__item--centered-horizontally { /* [2] */
+  margin-left:  auto;
+  margin-right: auto;
+}
+
+
+ .layout__item--floated-left  { float: left; } /* [3] */
+ .layout__item--floated-right { float: right; }/* [3] */
+
+
+
+
+
+/*------------------------------------*\
+  #GUTTERSY
+\*------------------------------------*/
+
+.gutter--horizontal-small { margin-bottom: 2.142rem; }
+
+.gutter--horizontal-big   { margin-bottom: 2.857rem; }
+
+
+
+
+
+/*------------------------------------*\
+  #HELPERSY
+\*------------------------------------*/
+
+.clearfix:after {
+  content:  "";
+  display:  table;
+  clear:	both;
+}
